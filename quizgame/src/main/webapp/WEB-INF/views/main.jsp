@@ -51,7 +51,7 @@
 		}
 		.side1, .side2 {
 			flex: 1;
-			height: 350px;
+			height: auto;
 			border-radius: 10px;
 			padding: 20px;
 			box-sizing: border-box;
@@ -60,6 +60,18 @@
 		#wrap{
 			min-height: calc(100vh - 10rem);
 		}
+		.thead-th{
+			border-top: 1px solid black !important; 
+			border-bottom: 2px solid black !important;
+		}
+		.tbody-td{
+			border-top: 1px solid gray !important;
+			border-bottom: 1px solid gray !important;
+		}
+		.side-h2{
+			text-align: center;
+			margin-bottom: 25px;
+		}
     </style>
     
 	<jsp:include page="/WEB-INF/views/common/head.jsp"/>
@@ -67,6 +79,7 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="container" id="wrap">
+		<h2 class="mt-3" style="text-align: center;">📖 퀴즈 게임 목록 📖</h2>
 		<ul class="list-community">
 			<c:forEach items="${quizList}" var="qt">
 				<li class="item-community">
@@ -77,22 +90,48 @@
 		<hr style="border: 2px solid black;">
 		<div class="container-sides">
 			<div class="side1">
-				<h2 style="text-align: center;">랭킹 TOP 5</h2>
-				<table class="table table-hover" style="border-collapse: collapse;">
+				<h2 class="side-h2">👑 랭킹 TOP 5 👑</h2>
+				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th style="border-top: 1px solid black; border-bottom: 2px solid black;">순위</th>
-							<th style="border-top: 1px solid black; border-bottom: 2px solid black;">아이디</th>
-							<th style="border-top: 1px solid black; border-bottom: 2px solid black;">점수</th>
+							<th class="thead-th">순위</th>
+							<th class="thead-th">아이디</th>
+							<th class="thead-th">점수</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach items="${memberList}" var="member" begin="0" end="4" varStatus="vs">
-						<tr>
-							<td>${vs.index + 1}</td>
-							<td>${member.me_id}</td>
-							<td>${member.me_point}</td>
-						</tr>
+							<c:choose>
+								<c:when test="${member.me_ranking == 1}">
+									<tr>
+										<td class="tbody-td">🥇</td>
+										<td class="tbody-td">${member.me_id}</td>
+										<td class="tbody-td">${member.me_point}</td>
+									</tr>
+								</c:when>
+								<c:when test="${member.me_ranking == 2}">
+									<tr>
+										<td class="tbody-td">🥈</td>
+										<td class="tbody-td">${member.me_id}</td>
+										<td class="tbody-td">${member.me_point}</td>
+									</tr>
+								</c:when>
+								<c:when test="${member.me_ranking == 3}">
+									<tr>
+										<td class="tbody-td">🥉</td>
+										<td class="tbody-td">${member.me_id}</td>
+										<td class="tbody-td">${member.me_point}</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<tr>
+										<td class="tbody-td">${member.me_ranking}</td>
+										<td class="tbody-td">${member.me_id}</td>
+										<td class="tbody-td">${member.me_point}</td>
+									</tr>
+								</c:otherwise>
+							</c:choose>
+						
 						</c:forEach>
 						<c:if test="${list.size() == 0}">
 							<tr>
@@ -103,31 +142,31 @@
 				</table>
 			</div>
 			<div class="side2">
-				<h2 style="text-align: center;">커뮤니티 TOP 5</h2>
+				<h2 class="side-h2">👑 커뮤니티 TOP 5 👑</h2>
 				<table class="table table-hover" style="border-collapse: collapse;">
 					<thead>
 						<tr>
-							<th style="border-top: 1px solid black; border-bottom: 2px solid black;">번호</th>
-							<th style="border-top: 1px solid black; border-bottom: 2px solid black;">제목</th>
-							<th style="border-top: 1px solid black; border-bottom: 2px solid black;">작성자</th>
-							<th style="border-top: 1px solid black; border-bottom: 2px solid black;">작성일</th>
-							<th style="border-top: 1px solid black; border-bottom: 2px solid black;">조회수</th>
+							<th class="thead-th">번호</th>
+							<th class="thead-th">제목</th>
+							<th class="thead-th">작성자</th>
+							<th class="thead-th">작성일</th>
+							<th class="thead-th">조회수</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach items="${postList}" var="post" begin="0" end="4">
 							<tr>
-								<td>${post.po_num}</td>
-								<td>
+								<td class="tbody-td">${post.po_num}</td>
+								<td class="tbody-td">
 									<a href="<c:url value="/post/detail?po_num=${post.po_num}"/>">${post.po_title}</a>
 								</td>
-								<td>
+								<td class="tbody-td">
 									<a href="<c:url value="/post/list?type=writer&search=${post.po_me_id}&co_num=${post.po_co_num}"/>" >${post.po_me_id}</a> 
 								</td>
-								<td>
+								<td class="tbody-td">
 									<fmt:formatDate value="${post.po_date}" pattern="yyyy-MM-dd"/>
 								</td>
-								<td>${post.po_view}</td>
+								<td class="tbody-td">${post.po_view}</td>
 							</tr>
 						</c:forEach>
 						<c:if test="${PostList.size() == 0}">

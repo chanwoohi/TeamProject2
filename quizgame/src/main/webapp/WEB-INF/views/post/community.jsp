@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <jsp:include page="/WEB-INF/views/common/head.jsp"/>
 <title>메인</title>
+<style type="text/css">
+	h1{
+		text-align: center;
+	}
+</style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -15,7 +20,7 @@
 <h1 class="mt-3 mb-3">커뮤니티 목록</h1>
 <ul class="list-group">
 	<c:forEach items="${list}" var="co">
-		<li class="list-group-item">
+		<li class="list-group-item list-group-item-action">
 			<a href="<c:url value="/post/list?co_num=${co.co_num}"/>">${co.co_name}</a>
 		</li>
 	</c:forEach>
@@ -23,10 +28,6 @@
 </div>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-
-</body>
-</html>
-
 
 </body>
 </html>

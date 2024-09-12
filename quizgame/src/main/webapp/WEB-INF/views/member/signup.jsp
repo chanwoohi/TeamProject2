@@ -28,53 +28,81 @@
 <style type="text/css">
 .error{
 	color:red;
+	
+}
+*{
+	box-sizing: border-box;
+}
+.container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 670px;
+	margin-top: 60px;
+	margin-bottom: 60px;
+	background: #ffffff;
+	border: 2px solid black;
+	box-shadow: 7px 7px 39px rgba(0, 0, 0, 0.25);
+	border-radius: 20px;
+}
+.btn{
+	background-color: #ffd480;
 }
 </style>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="container" style="min-height: calc(100vh - 240px)">
-		<form action="<c:url value="/signup"/>" method="post" id="form2">
+	<div class="container">
+		<form action="<c:url value="/signup"/>" method="post" id="form2" class="py-5">
+				<div class="header">
+		          <div class="h3 mb-3">회원 가입</div>
+        		</div>
 				<div class="form-group">
-					<label for="id">아이디</label> <input type="text" class="form-control"
-						id="id" name="me_id">
+					<label for="id">* 아이디</label>
+					<div class="clearfix">
+						<input type="text" class="form-control col-9 float-left"
+							id="id" name="me_id">
+						<button type="button"  class="btn btn-dup col-3 mb-3">아이디 중복 체크</button>
+					</div>
+					<label id="id-error" class="error" for="id" style="display: none;">필수 항목입니다.</label>
 				</div>
-				<button type="button" class="btn btn-outline-warning btn-dup col-12 mb-3"
-					style="border : solid, black, 2px;">아이디 중복 체크</button>
 				<div class="form-group">
-					<label for="pw">비밀번호</label> <input type="password"
+					<label for="pw">* 비밀번호</label> <input type="password"
 						class="form-control" id="pw" name="me_pw">
 				</div>
 				<div class="form-group">
-					<label for="pw2">비밀번호 확인</label> <input type="password"
+					<label for="pw2">* 비밀번호 확인</label> <input type="password"
 						class="form-control" id="pw2" name="me_pw2">
 				</div>
 				<div class="form-group">
-					<label for="phoneNumber">연락처</label> 
-					<input type="text"
-						class="phoneNumber" readonly value="010">
-					<span> - </span>
-					<input type="text"
-						class="phoneNumber" id="phoneNumberMid" name="me_phoneNumberMid">
-					<span> - </span>
-					<input type="text"
-						class="phoneNumber" id="phoneNumberEnd" name="me_phoneNumberEnd">
+					<label for="phoneNumber">* 연락처</label> 
+					<div class="d-flex align-items-center">
+						<input type="text"
+							class="phoneNumber form-control w-33 bg-white" readonly value="010">
+						<span> - </span>
+						<input type="text"
+							class="phoneNumber form-control w-33" id="phoneNumberMid" name="me_phoneNumberMid">
+						<span> - </span>
+						<input type="text"
+							class="phoneNumber form-control w-33" id="phoneNumberEnd" name="me_phoneNumberEnd">
+					</div>	
 				</div>
 				<div class="form-group">
-					<label for="email">이메일:</label> <input type="text"
-						class="form-control" id="email" name="me_email">
+					<label for="email">* 이메일</label> 
+					<input type="text" class="form-control" id="email" name="me_email">
 				</div>
 				<div>
-					<label for="address">주소</label>
-					<input type="text" id="address" name="me_address" placeholder="주소를 검색하세요" readonly>
-			        <button type="button" onclick="execDaumPostcode()">주소 검색</button>
-			        <!-- <input type="submit" value="서블릿으로 전송"> -->
+					<label for="address">* 주소</label>
+					<div class="clearfix">
+						<input type="text" id="address" class="form-control bg-white col-9 float-left" name="me_address" placeholder="주소를 검색하세요" readonly>
+				        <button type="button" class="btn col-3 mb-3" onclick="execDaumPostcode()">주소 검색</button>
+				        <!-- <input type="submit" value="서블릿으로 전송"> -->
+			        </div>
 			    </div>
 			    <div>
-					<label for="addressDetail">상세주소</label>
-					<input type="text" id="addressDetail" name="me_addressDetail" placeholder="상세 주소를 입력하세요">
+					<label for="addressDetail">* 상세주소</label>
+					<input type="text" id="addressDetail" class="form-control" name="me_addressDetail" placeholder="상세 주소를 입력하세요">
 			    </div>
-				<button type="submit" class="btn btn-outline-warning col-12"
-					style="border : solid, black, 2px;">회원가입</button>
+				<button type="submit" class="btn col-12 mt-4">회원가입</button>
 			</form>
 	</div>
 <script type="text/javascript">

@@ -9,13 +9,13 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
         .container {
             margin-top: 20px;
             padding: 20px;
             border-radius: 8px;
-            background-color: #ffffff;
+          	background-color: #DEB887;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         h1 {
@@ -29,9 +29,9 @@
         .list-quiz .item-community {
             margin-bottom: 15px;
             padding: 10px;
-            border: 1px solid #ddd;
+            border: 1px solid #f5deb3;
             border-radius: 5px;
-            background-color: #fafafa;
+            background-color: #f5deb3;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -74,7 +74,7 @@
                 <li class="item-community">
                     <span class="inner-quiz">${qt.qt_name}</span>
                     <span class="link-quiz">
-                        <a class="btn btn-outline-primary" href="<c:url value='/quiz2/quizlist?qt_num=${qt.qt_num}' />">퀴즈 목록</a>
+                        <a class="btn btn-info" href="<c:url value='/quiz2/quizlist?qt_num=${qt.qt_num}' />">퀴즈 목록</a>
                         <button class="btn btn-update" data-num="${qt.qt_num}">수정</button>
                         <a class="btn btn-del" href="<c:url value='/admin/quiz/delete?qt_num=${qt.qt_num}'/>">삭제</a>
                     </span>
@@ -85,7 +85,7 @@
             <form class="input-group mb-3" action="<c:url value='/admin/quiz/insert'/>" method="post" id="form_insert">
                 <input type="text" name="qt_name" class="form-control" placeholder="퀴즈 이름 입력">
                 <div class="input-group-append">
-                    <button type="submit" class="btn btn-outline-success">등록</button>
+                    <button type="submit" class="btn btn-dark">등록</button>
                 </div>
             </form>
         </div>
@@ -105,7 +105,7 @@ $('.btn-update').click(function(){
 	<form class="input-group mb-3" action="<c:url value="/admin/quiz/update"/>" method="post" id="form_update">
 		<input type="text" name="qt_name" class="form-control">
 		<div class="input-group-append">
-			<button type="submit" class="btn btn-outline-success">수정</button>
+			<button type="submit" class="btn btn-update">수정</button>
 		</div>
 		<input type="hidden" name="qt_num" value="\${num}">
 	</form>

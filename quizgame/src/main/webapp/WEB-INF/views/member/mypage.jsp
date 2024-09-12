@@ -29,50 +29,74 @@
 .error{
 	color:red;
 }
+*{
+	box-sizing: border-box;
+}
+.container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 800px;
+	margin-top: 60px;
+	margin-bottom: 60px;
+	background: #ffffff;
+	border: 2px solid black;
+	box-shadow: 7px 7px 39px rgba(0, 0, 0, 0.25);
+	border-radius: 20px;
+}
+.btn{
+	background-color: #ffd480;
+}
 </style>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="container" style="min-height: calc(100vh - 240px)">
-		<form action="<c:url value="/mypage"/>" method="post" id="form2">
+	<div class="container">
+		<form action="<c:url value="/mypage"/>" class="py-5" method="post" id="form2">
+				<div class="header">
+		          <div class="h3 mb-3">마이 페이지</div>
+        		</div>
 				<div class="form-group">
-					<label for="id">아이디</label> <input type="text" class="form-control"
+					<label for="id">* 아이디</label> <input type="text" class="form-control bg-white"
 						id="id" name="me_id" value="${member.me_id}" readonly>
 				</div>
 				<div class="form-group">
-					<label for="pw">비밀번호</label> <input type="password"
+					<label for="pw">* 비밀번호</label> <input type="password"
 						class="form-control" id="pw" name="me_pw">
 				</div>
 				<div class="form-group">
-					<label for="pw2">비밀번호 확인</label> <input type="password"
+					<label for="pw2">* 비밀번호 확인</label> <input type="password"
 						class="form-control" id="pw2" name="me_pw2">
 				</div>
 				<div class="form-group">
-					<label for="phoneNumber">연락처</label> 
-					<input type="text"
-						class="phoneNumber" readonly value="010">
-					<span> - </span>
-					<input type="text"
-						class="phoneNumber" id="phoneNumberMid" name="me_phoneNumberMid" value="${member.me_phoneNumberMid}">
-					<span> - </span>
-					<input type="text"
-						class="phoneNumber" id="phoneNumberEnd" name="me_phoneNumberEnd" value="${member.me_phoneNumberEnd}">
+					<label for="phoneNumber">* 연락처</label> 
+					<div class="d-flex align-items-center">
+						<input type="text"
+							class="phoneNumber form-control bg-white w-33" readonly value="010">
+						<span> - </span>
+						<input type="text"
+							class="phoneNumber form-control w-33" id="phoneNumberMid" name="me_phoneNumberMid" value="${member.me_phoneNumberMid}">
+						<span> - </span>
+						<input type="text"
+							class="phoneNumber form-control w-33" id="phoneNumberEnd" name="me_phoneNumberEnd" value="${member.me_phoneNumberEnd}">
+					</div>	
 				</div>
 				<div class="form-group">
-					<label for="email">이메일:</label> <input type="text"
+					<label for="email">* 이메일</label> <input type="text"
 						class="form-control" id="email" name="me_email" value="${member.me_email}">
 				</div>
 				<div>
-					<label for="address">주소</label>
-					<input type="text" id="address" name="me_address" placeholder="주소를 검색하세요" value="${member.me_address}" readonly>
-			        <button type="button" onclick="execDaumPostcode()">주소 검색</button>
-			        <!-- <input type="submit" value="서블릿으로 전송"> -->
+					<label for="address">* 주소</label>
+					<div class="clearfix">
+						<input type="text" id="address" class="form-control bg-white col-9 float-left" name="me_address" name="me_address" placeholder="주소를 검색하세요" value="${member.me_address}" readonly>
+				        <button type="button" class="btn col-3 mb-3" onclick="execDaumPostcode()">주소 검색</button>
+				        <!-- <input type="submit" value="서블릿으로 전송"> -->
+			        </div>
 			    </div>
 			    <div>
-					<label for="addressDetail">상세주소</label>
-					<input type="text" id="addressDetail" name="me_addressDetail" placeholder="상세 주소를 입력하세요" value="${member.me_addressDetail}">
+					<label for="addressDetail">* 상세주소</label>
+					<input type="text" id="addressDetail" class="form-control" name="me_addressDetail" placeholder="상세 주소를 입력하세요" value="${member.me_addressDetail}">
 			    </div>
-				<button type="submit" class="btn btn-outline-warning col-12"
-					style="border : solid, black, 2px;">회원 정보 수정</button>
+				<button type="submit" class="btn col-12 mt-4">회원 정보 수정</button>
 			</form>
 	</div>
 <script type="text/javascript">

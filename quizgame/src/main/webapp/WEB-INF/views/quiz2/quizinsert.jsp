@@ -20,7 +20,7 @@
             max-width: 900px;
             margin: 40px auto;
             padding: 30px;
-            background: #fff;
+            background: #DEB887;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
@@ -30,6 +30,7 @@
         }
         .form-group {
             margin-bottom: 20px;
+          
         }
         .form-group label {
             display: block;
@@ -74,6 +75,10 @@
             border: 1px solid #ced4da;
             background-color: #f8f9fa;
         }
+        .form-container{
+        	text-align : center;
+        	margin:auto;
+        }
     </style>
     <jsp:include page="/WEB-INF/views/common/head.jsp"/>
 </head>
@@ -111,7 +116,9 @@
                     <option value="4">4번</option>
                 </select>
             </div>
-            <button type="submit" class="btn">추가</button>
+            <div class="form-container">
+	            <button type="submit" class="btn btn-info">추가</button>
+            </div>
             <input type="hidden" name="qt_num" value="${qt_num}">
         </form>
     </div>

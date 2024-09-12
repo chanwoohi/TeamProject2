@@ -101,7 +101,7 @@
 			    			<tr>
 			    				<th>오답 갯수</th>
 			    				<th>&nbsp;:&nbsp;</th>
-			    				<td>${4 - count} 개<td>
+			    				<td>${10 - count} 개<td>
 			    			</tr>
 			    			<c:choose>
 			    				<c:when test="${score > 0}">

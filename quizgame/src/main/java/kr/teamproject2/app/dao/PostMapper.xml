@@ -12,22 +12,26 @@
 	</select>
 	
 	<select id="selectPostList" resultType="PostVO">
-		select * from post 
-		where po_co_num = #{cri.co_num}
-		<choose>
-			<when test="cri.type == 'title'">
-				and po_title like concat('%', #{cri.search}, '%')
-			</when>
-			<when test="cri.type == 'writer'">
-				and po_me_id = #{cri.search}
-			</when>
-			<otherwise>
-				and (po_title like concat('%', #{cri.search}, '%')
-				or po_me_id = #{cri.search})
-			</otherwise>
-		</choose>
-		order by po_num desc
-		limit #{cri.pageStart}, #{cri.perPageNum}
+		SELECT POST.*,
+			COUNT(IF(RE_STATE=1, RE_STATE, NULL)) PO_UP,
+			COUNT(IF(RE_STATE=-1, RE_STATE, NULL)) PO_DOWN
+		FROM
+			POST
+		LEFT JOIN
+			RECOMMEND ON PO_NUM = RE_PO_NUM
+		WHERE PO_CO_NUM = #{cri.co_num}
+		<if test="cri.type == 'all'">
+		AND (PO_TITLE LIKE CONCAT('%', #{cri.search}, '%') OR PO_ME_ID = #{cri.search})
+		</if>
+		<if test="cri.type == 'title'">
+		AND PO_TITLE LIKE CONCAT('%', #{cri.search}, '%')
+		</if>
+		<if test="cri.type == 'id'">
+		AND PO_ME_ID = #{cri.search}
+		</if>
+		GROUP BY PO_NUM
+		ORDER BY PO_NUM DESC
+		LIMIT #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<select id="selectPostTotalCount" resultType="int">
 		select count(*) from post 
