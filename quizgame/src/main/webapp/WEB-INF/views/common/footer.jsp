@@ -18,7 +18,7 @@
 		footer{
 			height: 10rem;
 			text-align: center;
-			background-color: #deb887 !important;
+			background-color: #ffcc00 !important;
 		}
 	</style>
 </head>

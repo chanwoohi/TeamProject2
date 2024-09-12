@@ -15,8 +15,9 @@
             margin-top: 20px;
             padding: 20px;
             border-radius: 8px;
-          	background-color: #DEB887;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          	background-color: white;
+            box-shadow: 7px 7px 39px rgba(0, 0, 0, 0.25);
+            border: 2px solid black;
         }
         h1 {
             color: black;
@@ -29,9 +30,8 @@
         .list-quiz .item-community {
             margin-bottom: 15px;
             padding: 10px;
-            border: 1px solid #f5deb3;
             border-radius: 5px;
-            background-color: #f5deb3;
+            background-color: #ffcc00;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -48,7 +48,7 @@
             margin-left: 5px;
         }
         .btn-update {
-            background-color: #ffc107;
+            background-color: #ff6600;
             color: #000;
         }
         .btn-del {
@@ -63,6 +63,10 @@
             background-color: #28a745;
             color: #fff;
         }
+        .btn-blue{
+        	background-color: #2bcae3;
+        	color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -74,7 +78,7 @@
                 <li class="item-community">
                     <span class="inner-quiz">${qt.qt_name}</span>
                     <span class="link-quiz">
-                        <a class="btn btn-info" href="<c:url value='/quiz2/quizlist?qt_num=${qt.qt_num}' />">퀴즈 목록</a>
+                        <a class="btn btn-blue" href="<c:url value='/quiz2/quizlist?qt_num=${qt.qt_num}' />">퀴즈 목록</a>
                         <button class="btn btn-update" data-num="${qt.qt_num}">수정</button>
                         <a class="btn btn-del" href="<c:url value='/admin/quiz/delete?qt_num=${qt.qt_num}'/>">삭제</a>
                     </span>

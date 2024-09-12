@@ -8,9 +8,6 @@
 <title>목록</title>
 <jsp:include page="/WEB-INF/views/common/head.jsp"/>
 <style>
-    body {
-        background-color: #ffe1c4;
-    }
     .container {
         margin-top: 20px;
     }

@@ -24,7 +24,7 @@
 		.link-community{
 			width: 100%;
             height: 100px;
-            background-color: #DEB887;
+            background-color: #ffcc00;
             border-radius: 10px;
             display: flex;
             justify-content: center;
@@ -35,13 +35,13 @@
             transition: background-color 0.3s ease, transform 0.3s ease;
 		}
 		.link-community:hover{
-			background-color: #DEB887;
+			background-color: #ffcc00;
             transform: scale(1.05);
             color: black;
    			text-decoration: none;
 		}
 		.link-community:active{
-			background-color: #DEB887;
+			background-color: #ffcc00;
             transform: scale(0.95);
 		}
 		.container-sides {
@@ -79,7 +79,7 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="container" id="wrap">
-		<h2 class="mt-3" style="text-align: center;">📖 퀴즈 게임 목록 📖</h2>
+		<h2 class="mt-4" style="text-align: center;">📖 퀴즈 게임 목록 📖</h2>
 		<ul class="list-community">
 			<c:forEach items="${quizList}" var="qt">
 				<li class="item-community">
