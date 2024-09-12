@@ -79,6 +79,7 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="container" id="wrap">
+		<h2 class="mt-3" style="text-align: center;">📖 퀴즈 게임 목록 📖</h2>
 		<ul class="list-community">
 			<c:forEach items="${quizList}" var="qt">
 				<li class="item-community">
@@ -89,7 +90,7 @@
 		<hr style="border: 2px solid black;">
 		<div class="container-sides">
 			<div class="side1">
-				<h2 class="side-h2">랭킹 TOP 5</h2>
+				<h2 class="side-h2">👑 랭킹 TOP 5 👑</h2>
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -100,22 +101,36 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${memberList}" var="member" begin="0" end="4" varStatus="vs">
-						<c:choose>
-							<c:when test="${vs.index + 1 == 1}">
-								<tr>
-									<td class="tbody-td">${vs.index + 1}</td>
-									<td class="tbody-td">🏆${member.me_id}</td>
-									<td class="tbody-td">${member.me_point}</td>
-								</tr>
-							</c:when>
-							<c:otherwise>
-								<tr>
-									<td class="tbody-td">${vs.index + 1}</td>
-									<td class="tbody-td">${member.me_id}</td>
-									<td class="tbody-td">${member.me_point}</td>
-								</tr>
-							</c:otherwise>
-						</c:choose>
+							<c:choose>
+								<c:when test="${member.me_ranking == 1}">
+									<tr>
+										<td class="tbody-td">🥇</td>
+										<td class="tbody-td">${member.me_id}</td>
+										<td class="tbody-td">${member.me_point}</td>
+									</tr>
+								</c:when>
+								<c:when test="${member.me_ranking == 2}">
+									<tr>
+										<td class="tbody-td">🥈</td>
+										<td class="tbody-td">${member.me_id}</td>
+										<td class="tbody-td">${member.me_point}</td>
+									</tr>
+								</c:when>
+								<c:when test="${member.me_ranking == 3}">
+									<tr>
+										<td class="tbody-td">🥉</td>
+										<td class="tbody-td">${member.me_id}</td>
+										<td class="tbody-td">${member.me_point}</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<tr>
+										<td class="tbody-td">${member.me_ranking}</td>
+										<td class="tbody-td">${member.me_id}</td>
+										<td class="tbody-td">${member.me_point}</td>
+									</tr>
+								</c:otherwise>
+							</c:choose>
 						
 						</c:forEach>
 						<c:if test="${list.size() == 0}">
@@ -127,7 +142,7 @@
 				</table>
 			</div>
 			<div class="side2">
-				<h2 class="side-h2">커뮤니티 TOP 5</h2>
+				<h2 class="side-h2">👑 커뮤니티 TOP 5 👑</h2>
 				<table class="table table-hover" style="border-collapse: collapse;">
 					<thead>
 						<tr>
