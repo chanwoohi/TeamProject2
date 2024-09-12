@@ -47,14 +47,14 @@
 	   		color: red;
 	   	}
 	   	nav{
-			background-color: #deb887 !important;
+			background-color: #ffff00 !important;
 		}
 		
 		.menu{
 			color: black !important;
 		}
-		.form-control.w-33{
-			width: 33%;
+		.logo img{
+			width : 70px;
 		}
 	</style>
 </head>
@@ -62,7 +62,9 @@
 	<nav class="navbar navbar-expand-sm navbar-dark" style="justify-content: space-between;">
 		<ul class="navbar-nav">
 			<li class="nav-item">
-				<a class="navbar-brand menu" href="<c:url value="/"/>">QUIZ</a>
+				<a class="navbar-brand menu logo" href="<c:url value='/' />">
+				   <img alt="quizlogo" src="/quizgame/resources/img/qlogo.png">
+				</a>
 			</li>
 			<c:if test="${user ne null && user.me_authority eq 'ADMIN'}">
 				<li class="nav-item">

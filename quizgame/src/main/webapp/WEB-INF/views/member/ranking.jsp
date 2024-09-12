@@ -18,14 +18,29 @@
 		#wrap{
 			min-height: calc(100vh - 10rem);
 		}
+		.container{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			width: 670px;
+			margin-top: 60px;
+			margin-bottom: 60px;
+			background: #ffffff;
+			border: 2px solid black;
+			box-shadow: 7px 7px 39px rgba(0, 0, 0, 0.25);
+			border-radius: 20px;
+		}
+		.container.container-width{
+   			 width: 40%;
+		}
 	</style>
 	<jsp:include page="/WEB-INF/views/common/head.jsp" />
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
-	<div class="container" id="wrap">
+	<div class="container container-width" id="wrap">
 		<h1 style="text-align: center; margin-top: 30px;">랭킹</h1>
-
+		
 		<table class="table table-hover">
 			<thead>
 				<tr>

@@ -24,7 +24,7 @@
 </head>
 <body>
 	<footer class="jumbotron jumbotron-fluid mb-0">
-		<div class="container">
+		<div class="container-footer">
 			<h2>푸터</h2>
 		</div>
 	</footer>
