@@ -33,11 +33,36 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${list}" var="member" varStatus="vs">
-					<tr>
-						<td class="tbody-td">${member.me_ranking}</td>
-						<td class="tbody-td">${member.me_id}</td>
-						<td class="tbody-td">${member.me_point}</td>
-					</tr>
+					<c:choose>
+						<c:when test="${member.me_ranking == 1}">
+							<tr>
+								<td class="tbody-td">🥇</td>
+								<td class="tbody-td">${member.me_id}</td>
+								<td class="tbody-td">${member.me_point}</td>
+							</tr>
+						</c:when>
+						<c:when test="${member.me_ranking == 2}">
+							<tr>
+								<td class="tbody-td">🥈</td>
+								<td class="tbody-td">${member.me_id}</td>
+								<td class="tbody-td">${member.me_point}</td>
+							</tr>
+						</c:when>
+						<c:when test="${member.me_ranking == 3}">
+							<tr>
+								<td class="tbody-td">🥉</td>
+								<td class="tbody-td">${member.me_id}</td>
+								<td class="tbody-td">${member.me_point}</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td class="tbody-td">${member.me_ranking}</td>
+								<td class="tbody-td">${member.me_id}</td>
+								<td class="tbody-td">${member.me_point}</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 				</c:forEach>
 				<c:if test="${list.size() == 0}">
 					<tr>

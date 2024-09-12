@@ -100,11 +100,23 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${memberList}" var="member" begin="0" end="4" varStatus="vs">
-						<tr>
-							<td class="tbody-td">${vs.index + 1}</td>
-							<td class="tbody-td">${member.me_id}</td>
-							<td class="tbody-td">${member.me_point}</td>
-						</tr>
+						<c:choose>
+							<c:when test="${vs.index + 1 == 1}">
+								<tr>
+									<td class="tbody-td">${vs.index + 1}</td>
+									<td class="tbody-td">🏆${member.me_id}</td>
+									<td class="tbody-td">${member.me_point}</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td class="tbody-td">${vs.index + 1}</td>
+									<td class="tbody-td">${member.me_id}</td>
+									<td class="tbody-td">${member.me_point}</td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
+						
 						</c:forEach>
 						<c:if test="${list.size() == 0}">
 							<tr>
