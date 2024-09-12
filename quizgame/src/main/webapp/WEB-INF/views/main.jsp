@@ -155,19 +155,21 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${postList}" var="post" begin="0" end="4">
-							<tr>
-								<td class="tbody-td">${post.po_num}</td>
-								<td class="tbody-td">
-									<a href="<c:url value="/post/detail?po_num=${post.po_num}"/>">${post.po_title}</a>
-								</td>
-								<td class="tbody-td">
-									<a href="<c:url value="/post/list?type=writer&search=${post.po_me_id}&co_num=${post.po_co_num}"/>" >${post.po_me_id}</a> 
-								</td>
-								<td class="tbody-td">
-									<fmt:formatDate value="${post.po_date}" pattern="yyyy-MM-dd"/>
-								</td>
-								<td class="tbody-td">${post.po_view}</td>
-							</tr>
+							<c:if test="${post.po_secret eq 'N'}">
+								<tr>
+									<td class="tbody-td">${post.po_num}</td>
+									<td class="tbody-td">
+										<a href="<c:url value="/post/detail?po_num=${post.po_num}"/>">${post.po_title}</a>
+									</td>
+									<td class="tbody-td">
+										<a href="<c:url value="/post/list?type=writer&search=${post.po_me_id}&co_num=${post.po_co_num}"/>" >${post.po_me_id}</a> 
+									</td>
+									<td class="tbody-td">
+										<fmt:formatDate value="${post.po_date}" pattern="yyyy-MM-dd"/>
+									</td>
+									<td class="tbody-td">${post.po_view}</td>
+								</tr>
+							</c:if>
 						</c:forEach>
 						<c:if test="${PostList.size() == 0}">
 							<tr>
