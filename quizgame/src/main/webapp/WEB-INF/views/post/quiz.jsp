@@ -8,7 +8,6 @@
 <title>${qt.qt_name}</title>
 <jsp:include page="/WEB-INF/views/common/head.jsp"/>
     <style>
-    	
         .quiz-box {
             width: 1000px;
             padding: 20px;
@@ -22,44 +21,46 @@
 		    left: 50%;
 		    transform: translate(-50%, -50%);
         }
-        
         .quiz-question {
             font-size: 23px;
             margin-bottom: 20px;
         }
-        
         .quiz-options label {
             display: block;
             font-size: 18px;
             margin-bottom: 10px;
             cursor: pointer;
         }
-        
         .quiz-options input[type="radio"] {
             margin-right: 40px;
         }
-        
         .btn:active{
         	background-color: #f7ac1b;
             transform: scale(0.95);
         }
-
-	    .end{
-	        font-size: 60px;
-	        font-weight: bold;
-	        margin-bottom: 20px;
-	        text-align: center;
-	    }
-	
-	    .result{
-	        font-size: 24px;
-	        font-weight: 500;
-	        margin-bottom: 10px;
-	    }
-	    
 	    h1{
 	    	text-align: center;
 	    }
+		.end-msg {
+			margin-bottom: 10px;
+		    text-align: center;
+		}
+		.result-row {
+		    display: flex;
+		    justify-content: center;
+		    font-size: 25px;
+		    margin-bottom: 10px;
+		}
+		.result-label {
+		    width: 120px;
+		    text-align: left;
+		    font-size: 25px;
+		}
+		.result-value {
+		    width: 200px;
+		    text-align: right;
+		    font-size: 25px;
+		}
     </style>
 </head>
 <body>
@@ -87,42 +88,25 @@
 				    <button type="submit" class="btn btn-outline-warning col-12">제출!!</button>
 			    </c:if>
 			    <c:if test="${index == list.size()}">
-			    	<span class="end">GAME END!!</span>
-			    	<hr>
-			    	<div class="result">
-			    		<span>${user.me_id} 님의 결과</span>
-			    		<table>
-			    			<tr>
-			    				<th>정답 갯수</th>
-			    				<th>&nbsp;:&nbsp;</th>
-			    				<td>${count} 개</td>
-			    			</tr>
-			    			<tr>
-			    				<th>오답 갯수</th>
-			    				<th>&nbsp;:&nbsp;</th>
-			    				<td>${10 - count} 개<td>
-			    			</tr>
-			    			<c:choose>
-			    				<c:when test="${score > 0}">
-					    			<tr>
-					    				<th>점수</th>
-					    				<th>&nbsp;:&nbsp;</th>
-					    				<td>${user.me_point} (+${score})</td>
-					    			</tr>
-			    				</c:when>
-			    				<c:otherwise>
-			    					<tr>
-					    				<th>점수</th>
-					    				<th>&nbsp;:&nbsp;</th>
-					    				<td>${user.me_point} (${score})</td>
-					    			</tr>
-			    				</c:otherwise>
-			    			</c:choose>
-			    		</table>
-			    	</div>
-			    	<br>
-			        <hr>
+
+			    	<div style="font-size: 50px; text-align: center;">GAME END!!!!!!</div>
+			    	<hr style="margin: 10px">
+			    	<p class="end-msg"><span style="font-size: 25px;">${user.me_id} 님의 결과!!</span></p>
+	
+					<p class="result-row"><span class="result-label" style="color: blue;">정답 갯수</span>:<span class="result-value">${count} 개</span></p>
+					<p class="result-row"><span class="result-label" style="color: red;">오답 갯수</span>:<span class="result-value">${10 - count} 개</span></p>
+					<c:choose>
+					    <c:when test="${score > 0}">
+					        <p class="result-row"><span class="result-label">점&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수</span>:<span class="result-value">${user.me_point} 점 (+${score})</span></p>
+					    </c:when>
+					    <c:otherwise>
+					        <p class="result-row"><span class="result-label">점&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수</span>:<span class="result-value">${user.me_point} 점 (${score})</span></p>
+					    </c:otherwise>
+					</c:choose>
+					<p style="text-align: right; font-size: 18px;">엄청 똑똑하시네여~!!</p>
+					<hr>
 					<a href="<c:url value="/main"/>" class="btn btn-outline-warning col-12">메뉴로 돌아가기</a>
+
 				</c:if>
 			</div>
 		</form>
