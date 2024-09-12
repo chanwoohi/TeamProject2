@@ -90,31 +90,29 @@
             </form>
         </div>
     </div>
-    <script type="text/javascript">
-$('.btn-del').click(function(e){
-	if(!confirm('해당 퀴즈를 삭제하시겠습니까?')){
-		e.preventDefault();
-		return;
-	}
-});
-$('.btn-update').click(function(){
-	$('#form_update').remove();
-	var num = $(this).data('num');
-	var name = $(this).prev().text();
-	var str = `
-	<form class="input-group mb-3" action="<c:url value="/admin/quiz/update"/>" method="post" id="form_update">
-		<input type="text" name="qt_name" class="form-control">
-		<div class="input-group-append">
-			<button type="submit" class="btn btn-outline-success">수정</button>
-		</div>
-		<input type="hidden" name="qt_num" value="\${num}">
-	</form>
-	`;
-	$('#form_insert').hide();
-	$('#form_insert').after(str);
-	
-});
-
+<script type="text/javascript">
+	$('.btn-del').click(function(e){
+		if(!confirm('해당 퀴즈를 삭제하시겠습니까?')){
+			e.preventDefault();
+			return;
+		}
+	});
+	$('.btn-update').click(function(){
+		$('#form_update').remove();
+		var num = $(this).data('num');
+		var name = $(this).prev().text();
+		var str = `
+		<form class="input-group mb-3" action="<c:url value="/admin/quiz/update"/>" method="post" id="form_update">
+			<input type="text" name="qt_name" class="form-control">
+			<div class="input-group-append">
+				<button type="submit" class="btn btn-outline-success">수정</button>
+			</div>
+			<input type="hidden" name="qt_num" value="\${num}">
+		</form>
+		`;
+		$('#form_insert').hide();
+		$('#form_insert').after(str);
+	});
 </script>
 </body>
 </html>
