@@ -14,8 +14,7 @@
 
 	}
    	*{
-   		font-family: 'establishRoomNo703OTF';
-   		font-size: 20px;
+   		font-family: 'establishRoomNo703OTF' !important;
    	}
    	body{
    		background-color: #fff;
