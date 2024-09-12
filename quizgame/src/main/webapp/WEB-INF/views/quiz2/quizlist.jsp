@@ -8,9 +8,6 @@
 <title>목록</title>
 <jsp:include page="/WEB-INF/views/common/head.jsp"/>
 <style>
-    body {
-        background-color: #ffe1c4;
-    }
     .container {
         margin-top: 20px;
     }
@@ -141,7 +138,7 @@
     </form>
 
     <button class="btn btn-danger float-right" id="delete-mode-button">삭제</button>
-    <a href="<c:url value='/quiz2/quizinsert?qt_num=${qt.qt_num}'/>" class="btn btn-primary float-right"">퀴즈 추가</a>
+    <a href="<c:url value='/quiz2/quizinsert?qt_num=${qt.qt_num}'/>" class="btn btn-primary float-right">퀴즈 추가</a>
 
     <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {

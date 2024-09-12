@@ -8,21 +8,15 @@
     <meta charset="UTF-8">
     <title>퀴즈 등록</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <jsp:include page="/WEB-INF/views/common/head.jsp"/>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
         .container {
             max-width: 900px;
             margin: 40px auto;
             padding: 30px;
-            background: #DEB887;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 2px solid black;
+			box-shadow: 7px 7px 39px rgba(0, 0, 0, 0.25);
         }
         h1 {
             margin-bottom: 20px;
@@ -80,7 +74,7 @@
         	margin:auto;
         }
     </style>
-    <jsp:include page="/WEB-INF/views/common/head.jsp"/>
+   
 </head>
 <body>
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>

@@ -47,7 +47,7 @@
 	   		color: red;
 	   	}
 	   	nav{
-			background-color: #ffff00 !important;
+			background-color: #ffcc00 !important;
 		}
 		
 		.menu{

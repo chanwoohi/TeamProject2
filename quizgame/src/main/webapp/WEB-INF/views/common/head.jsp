@@ -11,11 +11,12 @@
 	    src: url('<c:url value="/resources/font/establishRoomNo703OTF.woff"/>"') format('woff');
 	    font-weight: normal;
 	    font-style: normal;
+
 	}
    	*{
    		font-family: 'establishRoomNo703OTF' !important;
    	}
    	body{
-   		background-color: #f5deb3;
+   		background-color: #fff;
    	}
 </style>
