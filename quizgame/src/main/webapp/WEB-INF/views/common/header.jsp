@@ -22,6 +22,7 @@
 	   		background: rgba(0,0,0,0.3); z-index: 100; display: none;
 	   	}
 	   	.login-popup{
+	   		border-radius: 10px;
 	   		background: rgba(255, 255, 255, 1);
     		width: 500px;
     		padding: 30px;
@@ -30,11 +31,20 @@
 		    justify-content: center;
 		    /* align-items: center; */
 		    height: 400px;
+		    position: relative;
+		    border: 2px solid black;
+		    box-shadow: 7px 7px 39px rgba(0, 0, 0, 0.25);
 	   	}
 	   	.login-top{
 	   		display: flex;
 	   		justify-content: space-between;
             align-items: center;
+            
+	   	}
+	   	.btn-close{
+	   		position: absolute;
+	   		top: 15px; right: 15px;
+	   		color: red;
 	   	}
 	   	nav{
 			background-color: #deb887 !important;
@@ -42,6 +52,9 @@
 		
 		.menu{
 			color: black !important;
+		}
+		.form-control.w-33{
+			width: 33%;
 		}
 	</style>
 </head>
@@ -85,16 +98,16 @@
 	<div class="a">
 		<div class="container login-popup">
 			<div class="login-top">
-				<h1>로그인</h1>
+				<h4 class="mb-4">로그인</h4>
 				<a href="javascript:void(0)" class="btn-close">X</a>
 			</div>
 			<form action="<c:url value="/login"/>" method="post" id="form">
 				<div class="form-group">
-					<label for="id">아이디:</label>
+					<label for="id">아이디</label>
 					<input type="text" class="form-control" name="me_id">
 				</div>
 				<div class="form-group">
-					<label for="pw">비번:</label>
+					<label for="pw">비번</label>
 					<input type="password" class="form-control" name="me_pw">
 				</div>
 				<div class="form-check">
@@ -102,8 +115,8 @@
 		    			<input type="checkbox" class="form-check-input" value="true" name="auto">자동로그인
 		  			</label>
 				</div>
-				<button type="submit" class="btn btn-outline-warning col-12"
-					style="border : solid, black, 2px;">로그인</button>
+				<button type="submit" class="btn col-12"
+					style="background-color: #ffd480;">로그인</button>
 			</form>
 		</div>
 	</div>
