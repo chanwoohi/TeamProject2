@@ -62,16 +62,16 @@ h1{
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-<div class="container" id="wrap">
-<h1 class="mt-3 mb-3">커뮤니티 목록</h1>
-<table class="table table-hover">
-	<c:forEach items="${list}" var="co">
-		<tr>
-			<td class="list-group-item list-group-item-action">
-				<a href="<c:url value="/post/list?co_num=${co.co_num}"/>">${co.co_name}</a>
-			</td>
-		</tr>
-	</c:forEach>
+<div class="container container-width" id="wrap">
+	<h1 class="mt-3 mb-3">커뮤니티 목록</h1>
+	<table class="table table-hover">
+		<c:forEach items="${list}" var="co">
+			<tr>
+				<td class="list-group-item list-group-item-action">
+					<a href="<c:url value="/post/list?co_num=${co.co_num}"/>">${co.co_name}</a>
+				</td>
+			</tr>
+		</c:forEach>
 </table>
 </div>
 
