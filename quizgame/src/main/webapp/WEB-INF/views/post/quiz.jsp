@@ -11,7 +11,6 @@
     	
         .quiz-box {
             width: 1000px;
-            height: 420px;
             padding: 20px;
             border: 3px solid #f7ac1b;
             background-color: white;
