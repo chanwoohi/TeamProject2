@@ -58,6 +58,7 @@
     }
     .btn-primary{
     	background-color : #58abff;
+    	color: #000000;
     	}
     .btn-primary:hover {
         background-color: #58abff;
@@ -140,7 +141,7 @@
     </form>
 
     <button class="btn btn-danger float-right" id="delete-mode-button">삭제</button>
-    <a href="<c:url value='/quiz2/quizinsert?qt_num=${qt.qt_num}'/>" class="btn btn-primary float-right" style="color: #ffffff;">퀴즈 추가</a>
+    <a href="<c:url value='/quiz2/quizinsert?qt_num=${qt.qt_num}'/>" class="btn btn-primary float-right"">퀴즈 추가</a>
 
     <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
