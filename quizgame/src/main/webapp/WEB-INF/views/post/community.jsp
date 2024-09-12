@@ -11,12 +11,15 @@
 	h1{
 		text-align: center;
 	}
+	#wrap{
+		min-height: calc(100vh - 10rem);
+	}
 </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-<div class="container" style="min-height: calc(100vh - 240px)">
+<div class="container" id="wrap">
 <h1 class="mt-3 mb-3">커뮤니티 목록</h1>
 <ul class="list-group">
 	<c:forEach items="${list}" var="co">
