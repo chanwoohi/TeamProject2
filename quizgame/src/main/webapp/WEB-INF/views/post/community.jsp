@@ -50,11 +50,19 @@ h1{
 <meta charset="UTF-8">
 <jsp:include page="/WEB-INF/views/common/head.jsp"/>
 <title>메인</title>
+<style type="text/css">
+	h1{
+		text-align: center;
+	}
+	#wrap{
+		min-height: calc(100vh - 10rem);
+	}
+</style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-<div class="container container-width" style="min-height: calc(100vh - 240px)">
+<div class="container" id="wrap">
 <h1 class="mt-3 mb-3">커뮤니티 목록</h1>
 <table class="table table-hover">
 	<c:forEach items="${list}" var="co">

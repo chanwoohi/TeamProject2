@@ -16,16 +16,20 @@
 	   		font-family: 'establishRoomNo703OTF';
 	   	}
 		footer{
-			height: 10rem;
-			text-align: center;
+			height: 5rem;
 			background-color: #ffcc00 !important;
+		}
+		.container-footer{
+			padding: 20px;
+			padding-top: 40px;
+			text-align: center;
 		}
 	</style>
 </head>
 <body>
-	<footer class="jumbotron jumbotron-fluid mb-0">
+	<footer>
 		<div class="container-footer">
-			<h2>푸터</h2>
+			<p>@2024 2team - All rights reserved</p>
 		</div>
 	</footer>
 </body>
