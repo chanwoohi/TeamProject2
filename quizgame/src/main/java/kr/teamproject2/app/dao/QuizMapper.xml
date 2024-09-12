@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.teamproject2.app.dao.QuizDAO">
+	<select id="selectQuizType" resultType="QuizTypeVO">
+		select * from quiz_type
+	</select>
+	<insert id="insertQuizType">
+		insert into quiz_type(qt_name)
+		values(#{qt_name})
+	</insert>
+	<delete id="deleteQuizType">
+		delete from quiz_type where qt_num = #{qt_num}
+	</delete>
+	<update id="updateQuizType">
+		update quiz_type set qt_name = #{qt_name} where
+		qt_num = #{qt_num}
+	</update>
+
+	<select id="selectQuizTypeNum" resultType="QuizTypeVO">
+		select * from
+		quiz_type where qt_num = #{qt_num}
+	</select>
+	<select id="selectQuizList" resultType="QuizVO">
+		select 
+			*
+		from
+			quiz
+		where
+			qu_qt_num = #{qt_num}
+	</select>
+	<insert id="insertQuiz" useGeneratedKeys="true"
+		keyProperty="quiz.qu_num">
+		INSERT INTO quiz (qu_qt_num, qu_content, qu_answer1,
+		qu_answer2, qu_answer3, qu_answer4, qu_correct_answer)
+		VALUES (#{quiz.qu_qt_num}, #{quiz.qu_content}, #{quiz.qu_answer1},
+		#{quiz.qu_answer2}, #{quiz.qu_answer3}, #{quiz.qu_answer4},
+		#{quiz.qu_correct_answer})
+	</insert>
+	<select id="selectQuiz" resultType="QuizVO">
+		SELECT * FROM quiz WHERE qu_num = #{qu_num}
+	</select>
+	<delete id="deleteQuiz">
+		delete from quiz where qu_num = #{qu_num}
+	</delete>
+	<delete id="deleteall">
+		DELETE FROM quiz WHERE qu_num IN
+		<foreach item="item" collection="qu_nums" open="(" close=")"
+			separator=",">
+			#{item}
+		</foreach>
+	</delete>
+</mapper>

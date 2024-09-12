@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.teamproject2.app.dao.PostDAO">
+
+	<select id="selectCommunityList" resultType="CommunityVO">
+		select * from community
+	</select>
+	<select id="selectCommunity" resultType="CommunityVO">
+		select * from community where co_num = #{co_num}
+	</select>
+	
+	<select id="selectPostList" resultType="PostVO">
+		select * from post 
+		where po_co_num = #{cri.co_num}
+		<choose>
+			<when test="cri.type == 'title'">
+				and po_title like concat('%', #{cri.search}, '%')
+			</when>
+			<when test="cri.type == 'writer'">
+				and po_me_id = #{cri.search}
+			</when>
+			<otherwise>
+				and (po_title like concat('%', #{cri.search}, '%')
+				or po_me_id = #{cri.search})
+			</otherwise>
+		</choose>
+		order by po_num desc
+		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	<select id="selectPostTotalCount" resultType="int">
+		select count(*) from post 
+		where po_co_num = #{cri.co_num}
+		<choose>
+			<when test="cri.type == 'title'">
+				and po_title like concat('%', #{cri.search}, '%')
+			</when>
+			<when test="cri.type == 'writer'">
+				and po_me_id = #{cri.search}
+			</when>
+			<otherwise>
+				and (po_title like concat('%', #{cri.search}, '%')
+				or po_me_id = #{cri.search})
+			</otherwise>
+		</choose>
+	</select>
+	<select id="selectPost" resultType="PostVO">
+		SELECT 
+		    post.*, 
+		    count(if(re_state=1, re_state, null)) po_up,
+		    count(if(re_state=-1, re_state, null)) po_down
+		FROM
+		    post
+		        LEFT JOIN
+		    recommend ON po_num = re_po_num
+		WHERE po_num = #{po_num}
+		GROUP BY po_num 
+	</select>
+	<update id="updatePostView">
+		update post set po_view = po_view + 1 where po_num = #{po_num}
+	</update>
+	<insert id="insertPost">
+		insert into post(po_co_num, po_me_id, po_title, po_content, po_secret)
+		values(#{post.po_co_num},#{post.po_me_id},#{post.po_title},#{post.po_content},#{post.po_secret})
+	</insert>
+	<update id="updatePost">
+		update post 
+		set
+			po_title = #{post.po_title},
+			po_content = #{post.po_content}
+		where
+			po_num = #{post.po_num} 
+	</update>
+	<delete id="deletePost">
+		delete from post where po_num = #{po_num}
+	</delete>
+	<select id="selectCommentList" resultType="CommentVO">
+		select * from comment where cm_po_num = #{cri.po_num}
+		order by cm_ori_num desc, cm_num asc
+		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	<select id="selectCommentTotalCount" resultType="int">
+		select count(*) from comment where cm_po_num = #{cri.po_num}
+	</select>
+	<insert id="insertComment">
+		INSERT INTO COMMENT(CM_NUM, CM_CONTENT, CM_PO_NUM, CM_ORI_NUM, CM_ME_ID)
+		SELECT 
+			IFNULL(MAX(CM_NUM), 0) + 1, 
+			#{cm.cm_content}, 
+			#{cm.cm_po_num}, 
+		<choose>
+			<when test="cm.cm_ori_num == 0">
+				IFNULL(MAX(CM_NUM), 0) + 1 ,
+			</when>
+			<otherwise>
+				#{cm.cm_ori_num}
+			</otherwise>
+		</choose> 
+			#{cm.cm_me_id} 
+		FROM COMMENT
+	</insert>
+	<select id="selectComment" resultType="CommentVO">
+		select * from comment where cm_num = #{cm_num}
+	</select>
+	<delete id="deleteComment">
+		delete from comment where cm_num = #{cm_num}
+	</delete>
+	<update id="updateComment">
+		update 
+			comment 
+		set 
+			cm_content = #{cm.cm_content}
+		where 
+			cm_num = #{cm.cm_num}
+	</update>
+	<select id="selectQuizTypeList" resultType="QuizTypeVO">
+		SELECT * FROM QUIZ_TYPE
+	</select>
+	<select id="selectQuizType">
+		SELECT *
+		FROM
+			QUIZ_TYPE
+		WHERE QT_NUM = #{qt_num}
+	</select>
+	<select id="selectQuizList">
+		SELECT *
+		FROM
+			QUIZ
+		WHERE QU_QT_NUM = #{qt_num}
+	</select>
+	<select id="selectQuiz" resultType="QuizVO">
+		SELECT *
+		FROM
+			QUIZ
+		WHERE QU_NUM = #{qu_num}
+	</select>
+	<select id="selectPostListRanking" resultType="PostVO">
+		SELECT *
+		FROM
+			POST
+		ORDER BY PO_VIEW DESC
+	</select>
+	<insert id="insertRecommend">
+		insert into recommend(re_me_id, re_po_num, re_state)
+		values(#{re.re_me_id},#{re.re_po_num},#{re.re_state})
+	</insert>
+		<select id="selectRecommend" resultType="RecommendVO">
+		select * from recommend where re_me_id = #{re.re_me_id} and re_po_num = #{re.re_po_num}
+	</select>
+	<delete id="deleteRecommend">
+		delete from recommend where re_num = #{re_num}
+	</delete>
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.teamproject2.app.dao.MemberDAO">
+	<insert id="insertMember">
+		insert into 
+			member(me_id, me_pw, me_email, me_ms_name,
+		 		   me_address, me_addressDetail, me_phoneNumberMid, me_phoneNumberEnd)
+			values(#{me.me_id}, #{me.me_pw}, #{me.me_email}, '사용',
+				   #{me.me_address}, #{me.me_addressDetail}, #{me.me_phoneNumberMid}, #{me.me_phoneNumberEnd})
+	</insert>
+	<select id="selectMember" resultType="MemberVO">
+		select * from member where me_id = #{me_id}
+	</select>
+	<update id="updateMemberCookie">
+		update member
+		set
+			me_cookie = #{user.me_cookie},
+			me_limit = #{user.me_limit}
+		where
+			me_id = #{user.me_id}
+	</update>
+	<select id="selectMemberBySid" resultType="MemberVO">
+		select * from member where me_cookie = #{sid} and me_limit > now()
+	</select>
+	<select id="selectMemberList" resultType="MemberVO">
+		select 
+			dense_rank() over(order by me_point desc) as me_ranking,
+   		    me_id,
+    		me_point
+		from
+			member
+	</select>
+	<update id="updatePointUp">
+		UPDATE MEMBER SET ME_POINT = ME_POINT + 20 WHERE ME_ID = #{me_id}
+	</update>
+	<update id="updatePointDown">
+		UPDATE MEMBER SET ME_POINT = ME_POINT - 20 WHERE ME_ID = #{me_id}
+	</update>
+	<update id="updateMember">
+		update 
+			member
+		set
+			me_pw = #{me.me_pw},
+			me_email = #{me.me_email},
+			me_address = #{me.me_address},
+			me_addressDetail = #{me.me_addressDetail},
+			me_phoneNumberMid = #{me.me_phoneNumberMid},
+			me_phoneNumberEnd = #{me.me_phoneNumberEnd}
+		where 
+			me_id = #{me.me_id}
+	</update>
+</mapper>
