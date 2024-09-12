@@ -40,7 +40,7 @@ public class Quiz extends HttpServlet {
 	        
 	        List<QuizVO> allList = postService.getQuizList(qt_num);
 	        Collections.shuffle(allList);
-	        List<QuizVO> list = allList.subList(0, 2);
+	        List<QuizVO> list = allList.subList(0, 10);
 	        session.setAttribute("list", list);
 	        session.setAttribute("index", 0);
 	        if (!list.isEmpty()) {
