@@ -32,12 +32,12 @@ public class Quiz extends HttpServlet {
 	    String qt_numStr = request.getParameter("qt_num");
 	    try {
 	        int qt_num = Integer.parseInt(qt_numStr);
-	        System.out.println(qt_num);
+	        
 	        QuizTypeVO quizType = postService.getQuiz(qt_num);
 	        if (quizType == null) {
 	            throw new RuntimeException();
 	        }
-	        System.out.println(qt_num);
+	        
 	        List<QuizVO> allList = postService.getQuizList(qt_num);
 	        Collections.shuffle(allList);
 	        List<QuizVO> list = allList.subList(0, 2);
