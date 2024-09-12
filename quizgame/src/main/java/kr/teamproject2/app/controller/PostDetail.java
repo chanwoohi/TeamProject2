@@ -30,15 +30,12 @@ public class PostDetail extends HttpServlet {
 			int num = Integer.parseInt(po_num);
 			//2. 게시글 번호를 이용해서 게시글 정보를 가져옴
 			PostVO post = postService.getPost(num);
-			System.out.println(post.getPo_view());
 			//3. 게시글 정보를 화면에 전송
 			request.setAttribute("post", post);
-
 			// 로그인한 회원의 추천 정보를 가져옴 
 			MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 			RecommendVO recommend = postService.getRecommend(num, user);
 			request.setAttribute("re", recommend);
-
 
 			/* 비밀글 여부 확인 및 권한 체크
            		if (post.getPo_secret().equals("Y")) {
@@ -50,16 +47,11 @@ public class PostDetail extends HttpServlet {
                    return;
                }
            }*/
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-
 		request.getRequestDispatcher("/WEB-INF/views/post/detail.jsp").forward(request, response);
-
 	}
-
 
 }
 
