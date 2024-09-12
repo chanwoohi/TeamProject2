@@ -9,8 +9,7 @@
 <jsp:include page="/WEB-INF/views/common/head.jsp"/>
 <style>
     body {
-        background-color: #f8f9fa;
-        font-family: Arial, sans-serif;
+        background-color: #ffe1c4;
     }
     .container {
         margin-top: 20px;
@@ -20,7 +19,8 @@
         border-radius: 8px;
         overflow: hidden;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-collapse: collapse; 
+        border-collapse: collapse;
+        border : #ffe1c4;
     }
     .table thead {
         background-color: #007bff;
@@ -29,10 +29,12 @@
     .table th, .table td {
         text-align: center;
         padding: 12px;
-        border: 1px solid #ddd; 
+        border: 1px solid #ddd;
     }
     .table th {
         font-weight: bold;
+        background-color : #fff93d;
+        color : black;
     }
     .table tbody tr:nth-of-type(odd) {
         background-color: #f2f2f2;
@@ -44,34 +46,61 @@
         color: black;
     }
     .btn {
-        margin: 5px;
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
     }
-    .btn-delete {
+    .btn-primary{
+    	background-color : #58abff;
+    	}
+    .btn-primary:hover {
+        background-color: #58abff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .btn-danger {
         background-color: #dc3545;
-        color: #fff;
+        color: #000000;
     }
-    .btn-delete:hover {
+    .btn-danger:hover {
         background-color: #c82333;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
-    
+    .btn-secondary {
+        background-color: #dc3545;
+        color: #000000;
+    }
+    .btn-secondary:hover {
+        background-color: #dc3545;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .float-right {
+        float: right;
+        margin-left: 10px;
+    }
     .checkbox-container {
         width: 30px;
-        text-align: center; 
+        text-align: center;
         display: none;
     }
     .show-checkbox .checkbox-container {
-        display: table-cell; 
+        display: table-cell;
     }
     .select-all-container {
         text-align: center;
-        display: none; 
+        display: none;
     }
     .show-checkbox .select-all-container {
-        display: table-cell; 
+        display: table-cell;
     }
     .checkbox-container input[type="checkbox"] {
-        margin: 0; 
-        transform: scale(0.8); 
+        margin: 0;
+        transform: scale(0.8);
     }
 </style>
 </head>
@@ -102,16 +131,16 @@
                         <td>${quiz.qu_answer3}</td>
                         <td>${quiz.qu_answer4}</td>
                         <td>${quiz.qu_correct_answer}</td>
-                    </tr>  
+                    </tr>
                 </c:forEach>
             </tbody>
         </table>
-       
-        <button type="submit" class="btn btn-delete" id="delete-button" style="display: none;">선택 삭제</button>
+
+        <button type="submit" class="btn btn-danger float-right" id="delete-button" style="display: none;">선택 삭제</button>
     </form>
-    
-    <button class="btn btn-outline-danger" id="delete-mode-button">삭제</button>
-    <a href="<c:url value='/quiz2/quizinsert?qt_num=${qt.qt_num}'/>" class="btn btn-outline-danger">퀴즈 추가</a>
+
+    <button class="btn btn-danger float-right" id="delete-mode-button">삭제</button>
+    <a href="<c:url value='/quiz2/quizinsert?qt_num=${qt.qt_num}'/>" class="btn btn-primary float-right" style="color: #ffffff;">퀴즈 추가</a>
 
     <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
@@ -126,6 +155,8 @@
             selectAllContainer.style.display = tableBody.classList.contains('show-checkbox') ? 'table-cell' : 'none';
 
             this.textContent = this.textContent === '삭제' ? '취소' : '삭제';
+            this.classList.toggle('btn-danger');
+            this.classList.toggle('btn-secondary');
         });
 
         document.getElementById('select-all').addEventListener('click', function() {
