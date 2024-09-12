@@ -15,12 +15,15 @@
 			border-top: 1px solid gray !important;
 			border-bottom: 1px solid gray !important;
 		}
+		#wrap{
+			min-height: calc(100vh - 10rem);
+		}
 	</style>
 	<jsp:include page="/WEB-INF/views/common/head.jsp" />
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
-	<div class="container">
+	<div class="container" id="wrap">
 		<h1 style="text-align: center; margin-top: 30px;">랭킹</h1>
 
 		<table class="table table-hover">
@@ -72,5 +75,6 @@
 			</tbody>
 		</table>
 	</div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
