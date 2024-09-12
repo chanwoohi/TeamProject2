@@ -13,7 +13,7 @@
 	    font-style: normal;
 	}
    	*{
-   		font-family: 'establishRoomNo703OTF';
+   		font-family: 'establishRoomNo703OTF' !important;
    	}
    	body{
    		background-color: #f5deb3;
