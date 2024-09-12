@@ -1,0 +1,37 @@
+@font-face {
+	font-family: 'establishRoomNo703OTF';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRoomNo703OTF.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+ *{
+	 font-family: 'establishRoomNo703OTF';
+ }
+ .a{
+	 display: flex;
+	align-items: center;
+	 position: fixed; top: 0; bottom: 0; left: 0; right: 0;
+	 background: rgba(0,0,0,0.3); z-index: 100; display: none;
+ }
+ .login-popup{
+	 background: rgba(255, 255, 255, 1);
+	width: 500px;
+	padding: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	/* align-items: center; */
+	height: 400px;
+ }
+ .login-top{
+	 display: flex;
+	 justify-content: space-between;
+			align-items: center;
+ }
+ nav{
+background-color: #deb887 !important;
+}
+
+.menu{
+color: black !important;
+}

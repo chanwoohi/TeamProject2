@@ -43,13 +43,18 @@
 		.menu{
 			color: black !important;
 		}
+		.logo img{
+			width : 70px;
+		}
 	</style>
 </head>
 <body>
 	<nav class="navbar navbar-expand-sm navbar-dark" style="justify-content: space-between;">
 		<ul class="navbar-nav">
 			<li class="nav-item">
-				<a class="navbar-brand menu" href="<c:url value="/"/>">QUIZ</a>
+				<a class="navbar-brand menu logo" href="<c:url value='/' />">
+				   <img alt="quizlogo" src="/quizgame/resources/img/qlogo.png">
+				</a>
 			</li>
 			<c:if test="${user ne null && user.me_authority eq 'ADMIN'}">
 				<li class="nav-item">
