@@ -23,6 +23,7 @@
 			padding: 20px;
 			padding-top: 40px;
 			text-align: center;
+			height: 25px;
 		}
 	</style>
 </head>
